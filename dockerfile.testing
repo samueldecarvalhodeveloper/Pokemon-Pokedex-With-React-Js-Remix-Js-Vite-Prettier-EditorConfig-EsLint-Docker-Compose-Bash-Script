@@ -1,0 +1,16 @@
+# syntax=docker/dockerfile:1
+
+FROM node:22-alpine
+
+WORKDIR /src/app/
+
+COPY ./vite.config.ts /src/app/vite.config.ts
+COPY ./tsconfig.json /src/app/tsconfig.json
+COPY ./package.json /src/app/package.json
+COPY ./jest.setup.ts /src/app/jest.setup.ts
+COPY ./jest.config.ts /src/app/jest.config.ts
+COPY ./app/ /src/app/app/
+
+RUN npm install
+
+CMD npm run test
